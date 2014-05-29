@@ -190,9 +190,9 @@ def replyto(c, movie_titles, done):
 				print data
 			text += '* ' + movie + ' is not available on Netflix :(\n'
 
-	text += '\n\n[How to use NetflixBot.](https://github.com/alanwright/RedditBots/blob/master/bots/NetflixBot/NetflixBot_ReadMe.md)\n\n'
+	text += '\n\n[How to use NetflixBot.](https://github.com/alanwright/NetflixBot/ReadMe.md)\n\n'
 	text += '*Note: Titles must match exactly.*\n\n'
-	text += "PM for Feedback | [Source Code](https://github.com/alanwright/RedditBots/blob/master/bots/NetflixBot/NetflixBot.py) | This bot uses the [NetflixRouletteAPI](http://netflixroulette.net/api/)"
+	text += "PM for Feedback | [Source Code](https://github.com/alanwright/NetflixBot) | This bot uses the [NetflixRouletteAPI](http://netflixroulette.net/api/)"
 	
 	now = datetime.datetime.now()
 	print (len(done) + 1), 'ID:', c.id, 'Author:', c.author.name, 'r/' + str(c.subreddit.display_name), 'Title:', c.submission.title
