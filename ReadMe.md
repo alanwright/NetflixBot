@@ -1,4 +1,4 @@
-NetflixBot
+[NetflixBot](http://reddit.com/user/netflixbot)
 ===============================
 
 NetflixBot is designed to be a bot that listens to specific movie subreddits and when called upon (correctly) replies with whether a movie is currently streamable on Netflix (in the US).
@@ -56,6 +56,10 @@ To install these, first install Python 2.7, then install PIP. This is simple so 
 > pip install NetflixRouletteAPI
 
 You will also need to edit the config.cfg file with your bots credentials. The code should now compile and run :)
+
+## How Does the Code Work or How Do I Create a Bot?
+
+Check out my Reddit PRAW tutorial [here](https://alan-wright.squarespace.com/blog/reddit-api-subreddit) and my Reddit bot tutorial [here](https://alan-wright.squarespace.com/blog/netflixbot-tutorial).
 
 ##Additional Notes
 *Why is it US only? Reddit is an international community!*
