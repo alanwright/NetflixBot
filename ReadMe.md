@@ -59,7 +59,7 @@ You will also need to edit the config.cfg file with your bots credentials. The c
 
 ## How Does the Code Work or How Do I Create a Bot?
 
-Check out my Reddit PRAW tutorial [here](https://alan-wright.squarespace.com/blog/reddit-api-subreddit) and my Reddit bot tutorial [here](https://alan-wright.squarespace.com/blog/netflixbot-tutorial).
+Check out my Reddit PRAW tutorial [here](https://www.wrightlyso.com/blog/reddit-api-subreddit) and my Reddit bot tutorial [here](https://www.wrightlyso.com/blog/netflixbot-tutorial).
 
 ##Additional Notes
 *Why is it US only? Reddit is an international community!*
