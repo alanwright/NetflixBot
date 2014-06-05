@@ -276,7 +276,7 @@ def build_reply(input, type):
 	return text
 
 def add_signature(text):
-	text += '[How to use NetflixBot.](https://github.com/alanwright/NetflixBot/ReadMe.md)\n\n'
+	text += '[How to use NetflixBot.](https://github.com/alanwright/NetflixBot/blob/master/ReadMe.md)\n\n'
 	text += '*Note: Titles or names must match exactly, but capatilization does not matter.*\n\n'
 	text += "PM for Feedback | [Source Code](https://github.com/alanwright/NetflixBot) | This bot uses the [NetflixRouletteAPI](http://netflixroulette.net/api/)"
 	return text
