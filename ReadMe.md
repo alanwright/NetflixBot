@@ -1,10 +1,12 @@
 [NetflixBot](http://reddit.com/user/netflixbot)
 ===============================
 
-NetflixBot is designed to be a bot that listens to specific movie subreddits and when called upon (correctly) replies with whether a movie is currently streamable on Netflix (in the US).
+NetflixBot is designed to be a bot that listens to specific movie subreddits and when called upon (correctly) replies with whether a movie is currently streamable on Netflix (in the US). You can now also ask for a list of movies starring any actor or directed by any director on Netflix instant. 
 
 ## How to Call NetflixBot
 Calling NetflixBot is simple, but if you enter an incorrect character (as of now) it may return inaccurate information, OR may not recognize a call. The proper call syntax is:
+
+### Movies
 
 For a single movie:
 
@@ -22,10 +24,22 @@ If a title has comma in it, you should specify the title in quotes:
 
 > /u/netflixbot Breaking Bad, "Lock, Stock and Two Smoking Barrels", Don Jon
 
-**Important Notes**
+### Directors
+
+For a list of movies directed by a director:
+
+> /u/netflixbot Director: Quentin Tarantino
+
+### Actors
+
+For a list of movies directed by a director:
+
+> /u/netflixbot Actor: Quentin Tarantino
+
+### Important Notes
+* Currently only supports one type of call per comment (movie, actor or director)
 * It must be "/u/netflixbot" with both '/'
-* A single space between "/u/netflixbot" and the first movie title
-* The call must be on its own line OR the last thing in a comment. If you put text after the call, it needs to be on its own line
+* The call must be on its own line
 * Capitlization does not matter
 * Title must match exactly; this causes problems for some things like "The Office" which is "The Office (U.S.)" on Netflix
 * There can be spaces between items in a list
