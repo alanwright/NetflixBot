@@ -214,7 +214,6 @@ def build_reply(input, type):
 				if err.code == 400:
 					print 'Something went wrong with the query:'
 					print movie
-					print data
 				text += '* ' + movie + ' is not available on Netflix :(\n'
 
 	#Do an actor query
@@ -239,7 +238,6 @@ def build_reply(input, type):
 			if err.code == 400:
 				print 'Something went wrong with the query:'
 				print actor
-				print data
 			text += '* ' + actor + ' has no movies streaming on Netflix :(\n';
 
 	#Do a Director query
@@ -264,7 +262,6 @@ def build_reply(input, type):
 			if err.code == 400:
 				print 'Something went wrong with the query:'
 				print director
-				print data
 			text += '* ' + director + ' has no movies streaming on Netflix :(\n';
 
 	text += '\n\n[How to use NetflixBot.](https://github.com/alanwright/NetflixBot/ReadMe.md)\n\n'
