@@ -194,6 +194,17 @@ def convert(input):
     else:
         return input
 
+#fix capitlization
+def fix_caps(string):
+	ans = string[0].upper()
+	for i in range(1, len(string), 1):
+		if string[i-1] == ' ':
+			ans += string[i].upper()
+		else:
+			ans += string[i]
+	return ans
+
+#builds reply text
 def build_reply(input, type):
 	text = ''
 	flag = False
@@ -222,7 +233,7 @@ def build_reply(input, type):
 				if err.code == 400:
 					print 'Something went wrong with the query:'
 					print movie
-				text += '* ' + movie + ' is not available on Netflix :(\n'
+				text += '* ' + fix_caps(movie) + ' is not available on Netflix :(\n'
 
 	#Do an actor query
 	elif type == QUERY['actor']:
@@ -233,6 +244,7 @@ def build_reply(input, type):
 			actor = input[0:input.find('\n')]
 		else:
 			actor = input
+		actor = fix_caps(actor)
 
 		try:
 			#Fetch data and create output string
@@ -257,6 +269,7 @@ def build_reply(input, type):
 			director = input[0:input.find('\n')]
 		else:
 			director = input
+		director = fix_caps(director)
 		
 		try:
 			#Fetch data and create output string
