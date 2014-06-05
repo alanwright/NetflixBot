@@ -57,15 +57,18 @@ Currently testing on small subreddits...
 
 *If you would like me to add your subreddit, please reach out to me.*
 
-## How to Clone/Fork and Run NetflixBot
+## How to Clone and Run NetflixBot
 NetflixBot was written to run in Python 2.7 and you will need the following packages:
 * PRAW (Reddit Python API)
 * NetflixRouletteAPI
+* enum34 for enum support
 
 To install these, first install Python 2.7, then install PIP. This is simple so do the necessary searching. Then run the following commands:
 
 > $ pip install praw
+
 > $ pip install NetflixRouletteAPI
+
 > $ pip install enum34
 
 You will also need to edit the config.cfg file with your bots credentials. The code should now compile and run :)
