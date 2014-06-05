@@ -64,10 +64,9 @@ NetflixBot was written to run in Python 2.7 and you will need the following pack
 
 To install these, first install Python 2.7, then install PIP. This is simple so do the necessary searching. Then run the following commands:
 
-> pip install praw
-
-
-> pip install NetflixRouletteAPI
+> $ pip install praw
+> $ pip install NetflixRouletteAPI
+> $ pip install enum34
 
 You will also need to edit the config.cfg file with your bots credentials. The code should now compile and run :)
 
