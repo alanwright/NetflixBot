@@ -3,6 +3,8 @@
 
 NetflixBot is designed to be a bot that listens to specific movie subreddits and when called upon (correctly) replies with whether a movie is currently streamable on Netflix (in the US). You can now also ask for a list of movies starring any actor or directed by any director on Netflix instant. 
 
+![Image of sample response](https://raw.githubusercontent.com/alanwright/NetflixBot/master/img/scrnsht.PNG)
+
 ## How to Call NetflixBot
 Calling NetflixBot is simple, but if you enter an incorrect character (as of now) it may return inaccurate information, OR may not recognize a call. The proper call syntax is:
 
@@ -36,10 +38,19 @@ For a list of movies starring an actor:
 
 > /u/netflixbot Actor: Bruce Willis
 
+### Making Multiple Calls
+
+To make multiple calls (of any type) in one comment:
+
+> /u/netflixbot Pulp Fiction, Breaking Bad
+
+> /u/netflixbot Director: David Fincher
+
+> /u/netflixbot Actor: Ben Stiller
+
 ### Important Notes
-* Currently only supports one type of call per comment (movie, actor or director)
-* It must be "/u/netflixbot" with both '/'
-* The call must be on its own line
+* It must be "/u/netflixbot" with both '/' on all call lines
+* All calls must be on their own line
 * Capitlization does not matter
 * Title must match exactly; this causes problems for some things like "The Office" which is "The Office (U.S.)" on Netflix
 * There can be spaces between items in a list

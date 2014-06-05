@@ -8,16 +8,18 @@ import ConfigParser
 import os
 import urllib2
 import datetime
+import traceback
 from NetflixRoulette import *
 from os.path import sys
 from collections import deque 
 from time import sleep
 from enum import Enum
 
-NETFLIX_PREFIX = 'http://netflix.com/WiMovie/'
-API_LIMIT = 25
-SLEEP_TIME = 30
-QUERY = Enum('QUERY', 'actor director movie')
+NETFLIX_PREFIX  = 'http://netflix.com/WiMovie/'
+API_LIMIT       = 25
+REQUEST_LIMIT   = 10
+SLEEP_TIME      = 30
+QUERY           = Enum('QUERY', 'actor director movie')
 
 def main():
 	print('NetflixBot v1.2 by u/yoalan')
@@ -68,7 +70,7 @@ def main():
 				cache.append(c.id)
 				
 				#Check if we need to reply
-				if check_comment(c):
+				if check_comment(c.body):
 					
 					#Check if we already replied
 					for reply in c.replies:
@@ -76,32 +78,38 @@ def main():
 							already_done.add(c.id)
 					
 					if c.id not in already_done:
-						#comment
-						if 'director:' in c.body.lower():
-							director = parse_name(c, 'director:')
-							text = build_reply(director, QUERY['director'])
-						elif 'actor:' in c.body.lower():
-							actor = parse_name(c, 'actor:')
-							text = build_reply(actor, QUERY['actor'])
-						else:
-							movie_titles = parse_movies(c)
-							text = build_reply(movie_titles, QUERY['movie'])
+						bodysplit = c.body.lower().split('\n\n')
+						if len(bodysplit) <= REQUEST_LIMIT:
+							text = ''
+							for line in bodysplit:
+								#comment
+								if check_comment(line):
+									if 'director:' in line.lower():
+										director = parse_name(line, 'director:')
+										text += build_reply(director, QUERY['director'])
+									elif 'actor:' in line.lower():
+										actor = parse_name(line, 'actor:')
+										text += build_reply(actor, QUERY['actor'])
+									else:
+										movie_titles = parse_movies(line)
+										text += build_reply(movie_titles, QUERY['movie'])
 
-						replyto(c, text, already_done)
+							text = add_signature(text)
+							replyto(c, text, already_done)
 
 		except KeyboardInterrupt:
 			running = False
 		except Exception as e:
 			now = datetime.datetime.now()
 			print now.strftime("%m-%d-%Y %H:%M")
+			print traceback.format_exc()
 			print 'ERROR:', e
 			print 'Going to sleep for 30 seconds...\n'
 			sleep(SLEEP_TIME)
 			continue
 
 #checks a comment for required text
-def check_comment(comment):
-		text = comment.body   
+def check_comment(text): 
 		if '/u/netflixbot' in text.lower():
 			return True
 		return False
@@ -125,7 +133,7 @@ def find_quoted_titles(text):
 #Parses the actor or director name
 def parse_name(comment, phrase):
 	#get the movie list
-	text = comment.body.lower()
+	text = comment.lower()
 	begin = text.find('/u/netflixbot '+ phrase) + len('/u/netflixbot ' + phrase)
 	text = text[begin:]
 
@@ -140,7 +148,7 @@ def parse_name(comment, phrase):
 #parses movie titles
 def parse_movies(comment):
 	#get the movie list
-	text = comment.body.lower()
+	text = comment.lower()
 	begin = text.find('/u/netflixbot ') + len('/u/netflixbot ')
 	text = text[begin:]
 
@@ -264,7 +272,11 @@ def build_reply(input, type):
 				print director
 			text += '* ' + director + ' has no movies streaming on Netflix :(\n';
 
-	text += '\n\n[How to use NetflixBot.](https://github.com/alanwright/NetflixBot/ReadMe.md)\n\n'
+	text += '\n\n' + ('_' * 25) + '\n'
+	return text
+
+def add_signature(text):
+	text += '[How to use NetflixBot.](https://github.com/alanwright/NetflixBot/ReadMe.md)\n\n'
 	text += '*Note: Titles or names must match exactly, but capatilization does not matter.*\n\n'
 	text += "PM for Feedback | [Source Code](https://github.com/alanwright/NetflixBot) | This bot uses the [NetflixRouletteAPI](http://netflixroulette.net/api/)"
 	return text
