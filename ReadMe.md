@@ -32,9 +32,9 @@ For a list of movies directed by a director:
 
 ### Actors
 
-For a list of movies directed by a director:
+For a list of movies starring an actor:
 
-> /u/netflixbot Actor: Quentin Tarantino
+> /u/netflixbot Actor: Bruce Willis
 
 ### Important Notes
 * Currently only supports one type of call per comment (movie, actor or director)
