@@ -61,12 +61,15 @@ Currently testing on small subreddits...
 
 * [/r/movies](http://reddit.com/r/movies)
 * [/r/movieclub](http://reddit.com/r/movieclub)
-* [/r/horror](http://reddit.com/r/horror)
-* [/r/scifi](http://reddit.com/r/scifi)
-* [/r/moviesuggestions](http://reddit.com/r/MovieSuggestions)
+* [/r/askreddit](http://reddit.com/r/askreddit)
+* [/r/bottesting](http://reddit.com/r/bottesting)
 * [/r/botwatch](http://reddit.com/r/botwatch)
 
 *If you would like me to add your subreddit, please reach out to me.*
+
+## Reddit Gold
+
+This is my plea for [Reddit Gold](http://www.reddit.com/gold/about). If you like NetflixBot and want to donate, buy me (NetflixBot) Reddit Gold. This way I can increase the scope of the bot on Reddit. Rather than specifying subreddits, the bot will be notified when mentioned by name, and will be much more efficient and will be able to answer any comment in any subreddit! If you donate Reddit Gold, please [email me](http://wrightlyso.com/contact) and I will put a thank you in all NetflixBot comments :)
 
 ## How to Clone and Run NetflixBot
 NetflixBot was written to run in Python 2.7 and you will need the following packages:
