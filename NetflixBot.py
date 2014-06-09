@@ -19,6 +19,7 @@ NETFLIX_PREFIX  = 'http://netflix.com/WiMovie/'
 API_LIMIT       = 25
 REQUEST_LIMIT   = 10
 SLEEP_TIME      = 30
+CACHE_SIZE      = 200
 QUERY           = Enum('QUERY', 'actor director movie')
 
 def main():
@@ -49,7 +50,7 @@ def main():
 	r.login(USERNAME,PASSWORD)
 
 	#Set up our cache and completed work set
-	cache = deque(maxlen=200) # double-ended queue
+	cache = deque(maxlen=CACHE_SIZE) # double-ended queue
 	already_done = set()
 
 	running = True
@@ -57,7 +58,7 @@ def main():
 		try:
 			if str(SUBREDDITS[0]) != 'all':
 				subs = r.get_subreddit(combined_subs)
-				comments = subs.get_comments()
+				comments = subs.get_comments(limit=None)
 
 			#Check comments 
 			for c in comments:
