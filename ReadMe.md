@@ -1,6 +1,11 @@
 [NetflixBot](http://reddit.com/user/netflixbot)
 ===============================
 
+##NetflixBot is currently down!
+I'm currently in the process of moving across the country (literally, from FL to WA) so NetflixBot will be down. Once I receive my Raspberry Pi at my temporary housing from the movers, I will have NetflixBot up and running again. I appreciate your patience!
+
+##Description
+
 NetflixBot is designed to be a bot that listens to specific movie subreddits and when called upon (correctly) replies with whether a movie is currently streamable on Netflix (in the US). You can now also ask for a list of movies starring any actor or directed by any director on Netflix instant. 
 
 ![Image of sample response](https://raw.githubusercontent.com/alanwright/NetflixBot/master/img/scrnsht.PNG)
