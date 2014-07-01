@@ -17,41 +17,55 @@ Calling NetflixBot is simple, but if you enter an incorrect character (as of now
 
 For a single movie:
 
-> /u/netflixbot movie1
+```
+/u/netflixbot movie1
+```
 
 For a list of movies:
 
-> /u/netflixbot movie1,movie2,movie3
+```
+/u/netflixbot movie1,movie2,movie3
+```
 
 OR...
 
-> /u/netflixbot movie1, movie2, movie3
+```
+/u/netflixbot movie1, movie2, movie3
+```
 
 If a title has comma in it, you should specify the title in quotes:
 
-> /u/netflixbot Breaking Bad, "Lock, Stock and Two Smoking Barrels", Don Jon
+```
+/u/netflixbot Breaking Bad, "Lock, Stock and Two Smoking Barrels", Don Jon
+```
 
 ### Directors
 
 For a list of movies directed by a director:
 
-> /u/netflixbot Director: Quentin Tarantino
+```
+/u/netflixbot Director: Quentin Tarantino
+```
 
 ### Actors
 
 For a list of movies starring an actor:
 
-> /u/netflixbot Actor: Bruce Willis
+```
+/u/netflixbot Actor: Bruce Willis
+```
 
 ### Making Multiple Calls
 
 To make multiple calls (of any type) in one comment:
 
-> /u/netflixbot Pulp Fiction, Breaking Bad
+```
+/u/netflixbot Pulp Fiction, Breaking Bad
 
-> /u/netflixbot Director: David Fincher
+/u/netflixbot Director: David Fincher
 
-> /u/netflixbot Actor: Ben Stiller
+/u/netflixbot Actor: Ben Stiller
+```
 
 ### Important Notes
 * It must be "/u/netflixbot" with both '/' on all call lines
@@ -83,12 +97,13 @@ NetflixBot was written to run in Python 2.7 and you will need the following pack
 * enum34 for enum support
 
 To install these, first install Python 2.7, then install PIP. This is simple so do the necessary searching. Then run the following commands:
+```
+$ pip install praw
 
-> $ pip install praw
+$ pip install NetflixRouletteAPI
 
-> $ pip install NetflixRouletteAPI
-
-> $ pip install enum34
+$ pip install enum34
+```
 
 You will also need to edit the config.cfg file with your bots credentials. The code should now compile and run :)
 
