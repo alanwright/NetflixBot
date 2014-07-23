@@ -306,6 +306,7 @@ namespace NetflixBot
                 {
                     person = movie.Substring(0, movie.IndexOf('\n'));
                 }
+
                 else
                 {
                     person = movie;
@@ -316,12 +317,9 @@ namespace NetflixBot
                 {
 
                     //Fetch data and create output string
-                    List<RouletteResponse> list = NetflixRoulette.DirectorRequest("Joss Whedon");
-                    foreach (RouletteResponse r in list)
-                    {
-                        text += ("* " + r.ShowTitle + " (" + r.ReleaseYear + ") [is available on Netflix!](" + NETFLIX_PREFIX + r.ShowId +
-                                ") It has a " + r.Rating + " rating out of 5.\n");
-                    }
+                    RouletteResponse r = NetflixRoulette.TitleRequest(person);
+                    text += ("* " + r.ShowTitle + " (" + r.ReleaseYear + ") [is available on Netflix!](" + NETFLIX_PREFIX + r.ShowId +
+                            ") It has a " + r.Rating + " rating out of 5.\n");
                 }
                 catch (RouletteRequestException e)
                 {
