@@ -123,13 +123,13 @@ namespace NetflixBot
 
         public string parse_name(string body, string phrase)
         {
-            int begin = body.IndexOf("/u/netflixbot " + phrase) + ("/u/netflixbot " + phrase).Length + 1;
+            int begin = body.IndexOf("/u/netflixbot " + phrase) + ("/u/netflixbot " + phrase).Length;
 	        string text = body.Substring(begin);
 
 	        //trim leading/trailing spaces
-	        if(text[0].Equals(" "))
+	        if(text[0] == ' ')
 		        text = text.Substring(1);
-	        if(text[text.Length - 1].Equals(" "))
+	        if(text[text.Length - 1] == ' ')
 		        text = text.Substring(0, text.Length);
 
 	        return text;
@@ -137,7 +137,7 @@ namespace NetflixBot
 
         public List<string> parse_movies(string body)
         {
-            int begin = body.IndexOf("/u/netflixbot ") + ("/u/netflixbot ").Length + 1;
+            int begin = body.IndexOf("/u/netflixbot ") + ("/u/netflixbot ").Length;
             string text = body.Substring(begin);
 
             //split by quotes first
@@ -185,12 +185,12 @@ namespace NetflixBot
             for(int i = 0; i < res.Count; ++i)
             {
 		        string title = res[i];
-		        if(title[0].Equals(' '))
+		        if(title[0] == ' ')
                 {
 			        res[i] = title.Substring(1);
 			        title = res[i];
                 }
-		        if(title[title.Length - 1].Equals(' '))
+		        if(title[title.Length - 1] == ' ')
 			        res[i] = title.Substring(0, title.Length - 1);
             }
             return res;

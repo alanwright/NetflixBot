@@ -17,6 +17,28 @@ namespace NetflixBotUnitTests
         }
 
         [TestMethod]
+        public void TestParseMovies()
+        {
+            NetflixBotWorker n = new NetflixBotWorker();
+            string test = "/u/netflixbot test1, test with space2, test3";
+            List<string> ans = new List<string>();
+            ans.Add("test1");
+            ans.Add("test with space2");
+            ans.Add("test3");
+            List<string> temp = n.parse_movies(test);
+            CollectionAssert.AreEqual(ans, n.parse_movies(test));
+        }
+
+        [TestMethod]
+        public void TestParseActorName()
+        {
+            NetflixBotWorker n = new NetflixBotWorker();
+            string test = "/u/netflixbot Actor: testing";
+            string ans = "testing";
+            Assert.AreEqual(ans, n.parse_name(test, "Actor:"));
+        }
+
+        [TestMethod]
         public void TestParseDirector()
         {
             NetflixBotWorker n = new NetflixBotWorker();
