@@ -3,7 +3,7 @@
   <Role name="NetflixBot">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=netflixbotazure;AccountKey=qNXwJWOqqxBbcwrCpAg6n14lnbwXeBaB+betzhbxtbozO6kDRNis8jpQ7IFDV4wEJG1WhxTUIem8elpIDv44Fw==" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
