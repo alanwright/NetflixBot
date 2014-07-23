@@ -323,7 +323,7 @@ namespace NetflixBot
                 }
                 catch (RouletteRequestException e)
                 {
-                    text += "* " + person + " has no movies streaming on Netflix :(\n";
+                    text += "* " + person + " is not streaming on Netflix :(\n";
                 }
             }
 
