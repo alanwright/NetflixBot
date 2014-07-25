@@ -17,6 +17,8 @@ namespace NetflixBot
         public const int REQ_LIMIT = 25;
         public const int SPLIT_LIMIT = 10;
         public const string NETFLIX_PREFIX = "http://netflix.com/WiMovie/";
+        public const string ACTOR_TAG = "actor:";
+        public const string DIRECTOR_TAG = "director:";
         public enum Request { Director, Actor, Movie }
 
         public NetflixBotWorker() { }
@@ -41,16 +43,16 @@ namespace NetflixBot
                 foreach(var c in subreddit.Comments.Take(200))
                 {
                     //Cached comment?
-                    if(isCached(c, cache))
+                    if(IsCached(c, cache))
                         break;
                     else
                         cache.Add(c.Id);
                        
                     //should we reply?
-                    if(botIsMentioned(c.Body))
+                    if(BotIsMentioned(c.Body))
                     {
                         //Did we already reply?
-                        if (replies.Contains(c.Id) || alreadyReplied(c))
+                        if (replies.Contains(c.Id) || AlreadyReplied(c))
                             break;
 
                         //split replies
@@ -62,37 +64,38 @@ namespace NetflixBot
                             string text = "";
                             foreach(string split in split_body)
                             {
-                                if(botIsMentioned(split))
+                                string lowerSplit = split.ToLower();
+                                if(BotIsMentioned(split))
                                 {
                                     //Director response
-                                    if(split.Contains("director:"))
+                                    if(lowerSplit.Contains("director:"))
                                     {
-                                        string director = parse_name(split, "director:");
-										text += build_person_reply(director, Request.Director);
+                                        string director = ParseName(split, "director:");
+										text += BuildPersonReply(director, Request.Director);
                                     }
                                     //Actor response
-                                    else if(split.Contains("actor:"))
+                                    else if(lowerSplit.Contains("actor:"))
                                     {
-                                        string actor = parse_name(split, "actor:");
-                                        text += build_person_reply(actor, Request.Actor);
+                                        string actor = ParseName(lowerSplit, "actor:");
+                                        text += BuildPersonReply(actor, Request.Actor);
                                     }
                                     //Movie List response
                                     else
                                     {
-                                        List<string> movie_titles = parse_movies(split);
-                                        text += build_movie_reply(movie_titles);
+                                        List<string> movieTitles = parse_movies(split);
+                                        text += BuildMovieReply(movieTitles);
                                     }
                                 }
                             }
-                            text = add_signature(text);
-                            replies = reply(c, text, replies);
+                            text = AddSignature(text);
+                            replies = Reply(c, text, replies);
                         }
                     }
                 }
             }
         }
 
-        public bool isCached(RedditSharp.Things.Comment c , ArrayList cache)
+        public bool IsCached(RedditSharp.Things.Comment c , ArrayList cache)
         {
             foreach(var id in cache)
             {
@@ -104,11 +107,11 @@ namespace NetflixBot
             return false;
         }
 
-        public bool alreadyReplied(RedditSharp.Things.Comment c)
+        public bool AlreadyReplied(RedditSharp.Things.Comment c)
         {
             foreach(var reply in c.Comments)
             {
-                if(reply.Author == "netflixbot")
+                if(reply.Author.ToLower() == "netflixbot")
                 {
                     return true;
                 }
@@ -116,12 +119,12 @@ namespace NetflixBot
             return false;
         }
 
-        public bool botIsMentioned(string body)
+        public bool BotIsMentioned(string body)
         {
             return body.ToLower().Contains("/u/netflix");
         }
 
-        public string parse_name(string body, string phrase)
+        public string ParseName(string body, string phrase)
         {
             int begin = body.IndexOf("/u/netflixbot " + phrase) + ("/u/netflixbot " + phrase).Length;
 	        string text = body.Substring(begin);
@@ -145,7 +148,7 @@ namespace NetflixBot
             if(text.Contains(","))
             {
                 string[] splitText = Regex.Split(text, "\"");
-		        List<string> quotes = find_quoted_titles(text);
+		        List<string> quotes = FindQuotedTitles(text);
 
 		        //Extract the quoted titles and split the others by ','
 		        foreach(string item in splitText)
@@ -196,7 +199,7 @@ namespace NetflixBot
             return res;
         }
 
-        public List<string> find_quoted_titles(string text)
+        public List<string> FindQuotedTitles(string text)
         {
             int start = -1;
 	        int end = -1;
@@ -221,7 +224,7 @@ namespace NetflixBot
 	        return quotes;
         }
 
-        public string fix_caps(string text)
+        public string FixCaps(string text)
         {
             string ans = "" + Char.ToUpper(text[0]);
 	        for(int i = 1; i < text.Length; ++i)
@@ -234,7 +237,7 @@ namespace NetflixBot
 	        return ans;
         }
 
-        public string build_person_reply(string input, Request type)
+        public string BuildPersonReply(string input, Request type)
         {
             string text ="";
 
@@ -260,7 +263,7 @@ namespace NetflixBot
             {
 			    person = input;
             }
-		    person = fix_caps(person);
+		    person = FixCaps(person);
 
 		    try
             {
@@ -293,7 +296,7 @@ namespace NetflixBot
             return text;
         }
 
-        public string build_movie_reply(List<string> movie_titles)
+        public string BuildMovieReply(List<string> movie_titles)
         {
             string text = "";
 
@@ -301,29 +304,29 @@ namespace NetflixBot
             foreach (string movie in movie_titles)
             {
                 bool newline = movie.Contains("\n");
-                string person;
+                string movieTitle;
                 if (newline)
                 {
-                    person = movie.Substring(0, movie.IndexOf('\n'));
+                    movieTitle = movie.Substring(0, movie.IndexOf('\n'));
                 }
 
                 else
                 {
-                    person = movie;
+                    movieTitle = movie;
                 }
-                person = fix_caps(person);
+                movieTitle = FixCaps(movieTitle);
 
                 try
                 {
 
                     //Fetch data and create output string
-                    RouletteResponse r = NetflixRoulette.TitleRequest(person);
+                    RouletteResponse r = NetflixRoulette.TitleRequest(movieTitle);
                     text += ("* " + r.ShowTitle + " (" + r.ReleaseYear + ") [is available on Netflix!](" + NETFLIX_PREFIX + r.ShowId +
                             ") It has a " + r.Rating + " rating out of 5.\n");
                 }
                 catch (RouletteRequestException e)
                 {
-                    text += "* " + person + " is not streaming on Netflix :(\n";
+                    text += "* " + movieTitle + " is not streaming on Netflix :(\n";
                 }
             }
 
@@ -334,7 +337,7 @@ namespace NetflixBot
             return text;
         }
 
-        public string add_signature(string text)
+        public string AddSignature(string text)
         {
 	        text += "[How to use NetflixBot.](https://github.com/alanwright/NetflixBot/blob/master/ReadMe.md)\n\n";
 	        text += "*Note: Titles or names must match exactly, but capatilization does not matter.*\n\n";
@@ -343,7 +346,7 @@ namespace NetflixBot
 	        return text;
         }
 
-        public HashSet<string> reply(RedditSharp.Things.Comment c, string text, HashSet<string> done)
+        public HashSet<string> Reply(RedditSharp.Things.Comment c, string text, HashSet<string> done)
         {
 	        DateTime now = DateTime.Now;
 	        Trace.TraceInformation("ID:" +  c.Id + "Author:" + c.Author +  "r/" + c.Subreddit + "Title: " + c.LinkTitle);

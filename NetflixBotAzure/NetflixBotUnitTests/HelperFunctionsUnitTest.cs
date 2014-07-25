@@ -13,7 +13,7 @@ namespace NetflixBotUnitTests
         {
             NetflixBotWorker n = new NetflixBotWorker();
             string test = "/u/netflixbot test test test";
-            Assert.AreEqual(true, n.botIsMentioned(test));
+            Assert.AreEqual(true, n.BotIsMentioned(test));
         }
 
         [TestMethod]
@@ -35,7 +35,7 @@ namespace NetflixBotUnitTests
             NetflixBotWorker n = new NetflixBotWorker();
             string test = "/u/netflixbot Actor: testing";
             string ans = "testing";
-            Assert.AreEqual(ans, n.parse_name(test, "Actor:"));
+            Assert.AreEqual(ans, n.ParseName(test, "Actor:"));
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace NetflixBotUnitTests
         {
             NetflixBotWorker n = new NetflixBotWorker();
             string test = "/u/netflixbot director: quentin tarantino";
-            Assert.AreEqual("quentin tarantino", n.parse_name(test, "director:"));
+            Assert.AreEqual("quentin tarantino", n.ParseName(test, "director:"));
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace NetflixBotUnitTests
         {
             NetflixBotWorker n = new NetflixBotWorker();
             string test = "/u/netflixbot actor: quentin tarantino";
-            Assert.AreEqual("quentin tarantino", n.parse_name(test, "actor:"));
+            Assert.AreEqual("quentin tarantino", n.ParseName(test, "actor:"));
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace NetflixBotUnitTests
             string test = "\"Lock, Stock and Two Smoking Barrels\"";
             List<string> ans = new List<string>();
             ans.Add("Lock, Stock and Two Smoking Barrels");
-            CollectionAssert.AreEqual(ans, n.find_quoted_titles(test));
+            CollectionAssert.AreEqual(ans, n.FindQuotedTitles(test));
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace NetflixBotUnitTests
             List<string> ans = new List<string>();
             ans.Add("Lock, Stock and Two Smoking Barrels");
             ans.Add("testing");
-            CollectionAssert.AreEqual(ans, n.find_quoted_titles(test));
+            CollectionAssert.AreEqual(ans, n.FindQuotedTitles(test));
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@ namespace NetflixBotUnitTests
             NetflixBotWorker n = new NetflixBotWorker();
             string test = "test";
             List<string> ans = new List<string>();
-            CollectionAssert.AreEqual(ans, n.find_quoted_titles(test));
+            CollectionAssert.AreEqual(ans, n.FindQuotedTitles(test));
         }
 
         [TestMethod]
@@ -92,7 +92,7 @@ namespace NetflixBotUnitTests
             test.Add("Pulp Fiction");
             test.Add("Star Trek");
             string ans = "* Pulp Fiction (1994) [is available on Netflix!](http://netflix.com/WiMovie/880640) It has a 4.1 rating out of 5.\n* Star Trek (1966) [is available on Netflix!](http://netflix.com/WiMovie/70136140) It has a 3.9 rating out of 5.\n\n\n_________________________\n";
-            Assert.AreEqual(ans, n.build_movie_reply(test));
+            Assert.AreEqual(ans, n.BuildMovieReply(test));
         }
     }
 }
