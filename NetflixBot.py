@@ -37,13 +37,6 @@ def main():
 	PASSWORD  = config.get('Configuration', 'Password')
 	USERAGENT = config.get('Configuration', 'Useragent')
 	SUBREDDITS = config.get('Configuration', 'Subreddit').split(',')
-	
-	if str(SUBREDDITS[0]) != 'all':
-		combined_subs = ('%s') % '+'.join(SUBREDDITS)
-		print('Looking at the following subreddits: "' + combined_subs + '".')
-	else:
-		comments = praw.helpers.comment_stream(r, 'all', limit=None)
-		print('Looking at r/all.')
 
 	#login to reddit
 	r = praw.Reddit(USERAGENT)
@@ -52,6 +45,14 @@ def main():
 	#Set up our cache and completed work set
 	cache = deque(maxlen=CACHE_SIZE) # double-ended queue
 	already_done = set()
+
+	#Setup subreddits
+	if str(SUBREDDITS[0]) != 'all':
+		combined_subs = ('%s') % '+'.join(SUBREDDITS)
+		print('Looking at the following subreddits: "' + combined_subs + '".')
+	else:
+		comments = praw.helpers.comment_stream(r, 'all', limit=None)
+		print('Looking at r/all.')
 
 	running = True
 	while running:    
