@@ -1,20 +1,10 @@
 [NetflixBot](http://reddit.com/user/netflixbot)
 ===============================
 
-##NetflixBot is Up!
-Since my Raspberry Pi won't be up for a while I went ahead and converted NetflixBot to a Windows Azure service (basically python to C#) and running in the "Cloud". This will give NetflixBot no downtime. The other side of the coin is that I haven't perfected the code yet as I'm new to Azure and the C# Reddit API Wrapper so NetflixBot is only running on r/movies currently. Also, the code is a little rough that I'm checking in to the Azure folder. I will clean it up in the coming days, write some more unit tests and documentation. 
+##Recent NetflixBot Changes
+I recently went through a move and in an attempt to get NetflixBot up (since I did not have my Rasp. Pi) I ported the code to c# to run as an Azure service. It was really awesome, but the Reddit C# API still needs some work so I'm going back to running the Python script that is easy to run. I've also decided to run NetflixBot on Virtual Machine on Azure since my Rasp. Pi often went down. Once I settle in I may switch back to my Rasp. Pi, but for now the service will be in Windows Azure! I will also be testing the bot on r/all to see how it performs. 
 
-I currently can take two paths:
-1. I can keep fixing the C# code and just have it run as an Azure Web Service.
-2. I can create a linux VM on Azure, and run the Python script. 
-
-I'm not sure which I want to do. I like both c# and Python. Both options will be much easier than managing my RPi since the wireless dongle often fails after running for many hours. The PRAW API seems easy to update and is updated often. If you have any opinions let me know. As I think on this, the code base will be a little of a mess - I don't want to maintain two versions of the code so once I pick one, I'll get it up and clean the code and documentation. 
-
-Thanks for patience with the down time!
-
-## ~~NetflixBot is currently down!~~
-
-~~I'm currently in the process of moving across the country (literally, from FL to WA) so NetflixBot will be down. Once I receive my Raspberry Pi at my temporary housing from the movers, I will have NetflixBot up and running again. I appreciate your patience!~~
+There are some exciting features coming to the NetflixRouletteAPI which I plan on supporting so star and follow to see the cool new features in the coming months. 
 
 ##Description
 
@@ -88,12 +78,12 @@ To make multiple calls (of any type) in one comment:
 * You can put any amount of text before the line where you call /u/netflixbot or after (careful of bullet 3)
 
 ## Current Subreddits
-Currently testing on small subreddits...
+Trying r/all...
 
+* [r/all](http://reddit.com/r/all)
 * [/r/movies](http://reddit.com/r/movies)
-* ~~[/r/movieclub](http://reddit.com/r/movieclub)~~
-* ~~[/r/bottesting](http://reddit.com/r/bottesting)~~
-* ~~[/r/botwatch](http://reddit.com/r/botwatch)~~
+* [/r/bottesting](http://reddit.com/r/bottesting)
+* [/r/botwatch](http://reddit.com/r/botwatch)
 
 *If you would like me to add your subreddit, please reach out to me.*
 

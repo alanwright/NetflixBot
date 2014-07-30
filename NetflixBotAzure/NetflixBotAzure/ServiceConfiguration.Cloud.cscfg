@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="NetflixBotAzure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-01.2.3">
-  <Role name="NetflixBot">
-    <Instances count="1" />
-    <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=netflixbotazure;AccountKey=qNXwJWOqqxBbcwrCpAg6n14lnbwXeBaB+betzhbxtbozO6kDRNis8jpQ7IFDV4wEJG1WhxTUIem8elpIDv44Fw==" />
-    </ConfigurationSettings>
-  </Role>
-</ServiceConfiguration>
