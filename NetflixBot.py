@@ -143,7 +143,7 @@ def parse_name(comment, phrase):
 	if text[0] == ' ':
 		text = text[1:]
 	if text[len(text)-1] == ' ':
-		text = text[0:len(text)]
+		text = text[0:len(text) - 1]
 
 	return text
 
