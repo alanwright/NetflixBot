@@ -78,14 +78,10 @@ To make multiple calls (of any type) in one comment:
 * You can put any amount of text before the line where you call /u/netflixbot or after (careful of bullet 3)
 
 ## Current Subreddits
-Trying r/all...
 
 * [r/all](http://reddit.com/r/all)
-* [/r/movies](http://reddit.com/r/movies)
-* [/r/bottesting](http://reddit.com/r/bottesting)
-* [/r/botwatch](http://reddit.com/r/botwatch)
 
-*If you would like me to add your subreddit, please reach out to me.*
+*If you would like specific functionality for your subreddit, please reach out to me.*
 
 ## Reddit Gold
 
@@ -115,7 +111,7 @@ Check out my Reddit PRAW tutorial [here](http://www.wrightlyso.com/blog/reddit-a
 ##Additional Notes
 *Why is it US only? Reddit is an international community!*
 
-Right now the NetflixRouletteAPI only supports the US, and since I use this API, I can currently only support US accuracy. If this bot becomes popular I would like to increase its scope. 
+Right now the NetflixRouletteAPI only supports the US, and since I use this API, I can currently only support US accuracy. There are updates in the works to support this so stay tuned! :)
 
 Alan Wright
 
