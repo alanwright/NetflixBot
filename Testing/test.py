@@ -20,23 +20,24 @@ SLEEP_TIME = 30
 QUERY = Enum('QUERY', 'actor director movie')
 
 def main():
-	c = "/u/NetflixBot Director: Quentin Tarantino\n"
+	c = "/u/netflixbot Actor: David Bowie \n\n/u/netflixbot Actor: Tom Hiddleston\n\n/u/netflixbot Actor: Arnold Schwarzenegger "
 	already_done = set()
-	if check_comment(c):
-		
-		#comment
-		if 'director:' in c.lower():
-			print 'director'
-			director = parse_name(c, 'director:')
-			text = build_reply(director, QUERY['director'])
-		elif 'actor:' in c.lower():
-			print 'actor'
-			actor = parse_name(c, 'actor:')
-			text = build_reply(actor, QUERY['actor'])
-		else:
-			movie_titles = parse_movies(c)
-			text = build_reply(movie_titles, QUERY['movie'])
+	bodysplit = c.lower().split('\n\n')
+	if len(bodysplit) <= 25:
+		text = ''
+		for line in bodysplit:
+			if check_comment(line):
+				if 'director:' in line.lower():
+					director = parse_name(line, 'director:')
+					text += build_reply(director, QUERY['director'])
+				elif 'actor:' in line.lower():
+					actor = parse_name(line, 'actor:')
+					text += build_reply(actor, QUERY['actor'])
+				else:
+					movie_titles = parse_movies(line)
+					text += build_reply(movie_titles, QUERY['movie'])
 
+		text = add_signature(text)
 		replyto(c, text, already_done)
 
 
@@ -74,7 +75,7 @@ def parse_name(comment, phrase):
 	if text[0] == ' ':
 		text = text[1:]
 	if text[len(text)-1] == ' ':
-		text = text[0:len(text)]
+		text = text[0:len(text) - 1]
 
 	print text
 	return text
@@ -128,6 +129,7 @@ def convert(input):
     else:
         return input
 
+#builds reply text
 def build_reply(input, type):
 	text = ''
 	flag = False
@@ -156,12 +158,18 @@ def build_reply(input, type):
 				if err.code == 400:
 					print 'Something went wrong with the query:'
 					print movie
-					print data
-				text += '* ' + movie + ' is not available on Netflix :(\n'
+				text += '* ' + fix_caps(movie) + ' is not available on Netflix :(\n'
 
 	#Do an actor query
 	elif type == QUERY['actor']:
-		actor = input[0:input.find('\n')]
+
+		#check for newline if there is text after the call
+		newline = input.find('\n')
+		if newline != -1:
+			actor = input[0:input.find('\n')]
+		else:
+			actor = input
+		actor = fix_caps(actor)
 
 		try:
 			#Fetch data and create output string
@@ -174,13 +182,19 @@ def build_reply(input, type):
 			# 400 error code generally means invalid query structure
 			if err.code == 400:
 				print 'Something went wrong with the query:'
-				print movie
-				print data
+				print actor
 			text += '* ' + actor + ' has no movies streaming on Netflix :(\n';
 
 	#Do a Director query
 	elif type == QUERY['director']:
-		director = input[0:input.find('\n')]
+
+		#check for newline
+		newline = input.find('\n')
+		if newline != -1:
+			director = input[0:input.find('\n')]
+		else:
+			director = input
+		director = fix_caps(director)
 		
 		try:
 			#Fetch data and create output string
@@ -193,11 +207,25 @@ def build_reply(input, type):
 			# 400 error code generally means invalid query structure
 			if err.code == 400:
 				print 'Something went wrong with the query:'
-				print movie
-				print data
+				print director
 			text += '* ' + director + ' has no movies streaming on Netflix :(\n';
 
-	text += '\n\n[How to use NetflixBot.](https://github.com/alanwright/NetflixBot/ReadMe.md)\n\n'
+	text += '\n\n' + ('_' * 25) + '\n'
+	return text
+
+#fix capitlization
+def fix_caps(string):
+	ans = string[0].upper()
+	for i in range(1, len(string), 1):
+		if string[i-1] == ' ':
+			ans += string[i].upper()
+		else:
+			ans += string[i]
+	return ans
+
+
+def add_signature(text):
+	text += '[How to use NetflixBot.](https://github.com/alanwright/NetflixBot/blob/master/ReadMe.md)\n\n'
 	text += '*Note: Titles or names must match exactly, but capatilization does not matter.*\n\n'
 	text += "PM for Feedback | [Source Code](https://github.com/alanwright/NetflixBot) | This bot uses the [NetflixRouletteAPI](http://netflixroulette.net/api/)"
 	return text
