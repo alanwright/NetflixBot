@@ -78,7 +78,11 @@ NetflixBot was written to run in Python 2.7 and you will need the following pack
 * NetflixRouletteAPI (For new features you will need [NetflixRoulettePython](http://github.com/alanwright/NetflixRoulettePython))
 * enum34 for enum support
 
-To install these, first install Python 2.7, then install PIP. This is simple so do the necessary searching. Then run the following commands:
+### Instructions:
+* Install [Python 2.7](https://www.python.org/downloads/).
+* Install [PIP](https://pip.pypa.io/en/stable/installing/).
+
+Then run the following commands:
 ```
 $ pip install praw
 
@@ -87,7 +91,13 @@ $ pip install NetflixRouletteAPI
 $ pip install enum34
 ```
 
-You will also need to edit the config.cfg file with your bots credentials. The code should now compile and run :)
+* Use the `.py' and `.pyc' files from my [extended NetflixRouletteApi Python wrapper](https://github.com/alanwright/NetflixRoulettePython).
+* You will also need to edit the config.cfg file with your bots credentials. The code should now compile and run :smile:
+
+```
+$ python NetflixBot.py
+```
+
 
 ##Additional Notes
 *Why is it US only? Reddit is an international community!*
