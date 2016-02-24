@@ -1,14 +1,9 @@
 [NetflixBot](http://reddit.com/user/netflixbot)
 ===============================
 
-##Recent NetflixBot Changes
-I recently went through a move and in an attempt to get NetflixBot up (since I did not have my Rasp. Pi) I ported the code to c# to run as an Azure service. It was really awesome, but the Reddit C# API still needs some work so I'm going back to running the Python script that is easy to run. I've also decided to run NetflixBot on Virtual Machine on Azure since my Rasp. Pi often went down. Once I settle in I may switch back to my Rasp. Pi, but for now the service will be in Windows Azure! I will also be testing the bot on r/all to see how it performs. 
-
-There are some exciting features coming to the NetflixRouletteAPI which I plan on supporting so star and follow to see the cool new features in the coming months. 
-
 ##Description
 
-NetflixBot is designed to be a bot that listens to specific movie subreddits and when called upon (correctly) replies with whether a movie is currently streamable on Netflix (in the US). You can now also ask for a list of movies starring any actor or directed by any director on Netflix instant. 
+NetflixBot is designed to be a bot that listens for mentions and when called upon (correctly) replies with whether a movie is currently streamable on Netflix (in the US). You can now also ask for a list of movies starring any actor or directed by any director on Netflix instant. 
 
 ![Image of sample response](https://raw.githubusercontent.com/alanwright/NetflixBot/master/img/scrnsht.PNG)
 
@@ -77,23 +72,17 @@ To make multiple calls (of any type) in one comment:
 * There can be spaces between items in a list
 * You can put any amount of text before the line where you call /u/netflixbot or after (careful of bullet 3)
 
-## Current Subreddits
-
-* [r/all](http://reddit.com/r/all)
-
-*If you would like specific functionality for your subreddit, please reach out to me.*
-
-## Reddit Gold
-
-This is my plea for [Reddit Gold](http://www.reddit.com/gold/about). If you like NetflixBot and want to donate, buy me (NetflixBot) Reddit Gold. This way I can increase the scope of the bot on Reddit. Rather than specifying subreddits, the bot will be notified when mentioned by name, and will be much more efficient and will be able to answer any comment in any subreddit! If you donate Reddit Gold, please [email me](http://wrightlyso.com/contact) and I will put a thank you in all NetflixBot comments :)
-
 ## How to Clone and Run NetflixBot
 NetflixBot was written to run in Python 2.7 and you will need the following packages:
 * PRAW (Reddit Python API)
 * NetflixRouletteAPI (For new features you will need [NetflixRoulettePython](http://github.com/alanwright/NetflixRoulettePython))
 * enum34 for enum support
 
-To install these, first install Python 2.7, then install PIP. This is simple so do the necessary searching. Then run the following commands:
+### Instructions:
+* Install [Python 2.7](https://www.python.org/downloads/).
+* Install [PIP](https://pip.pypa.io/en/stable/installing/).
+
+Then run the following commands:
 ```
 $ pip install praw
 
@@ -102,11 +91,13 @@ $ pip install NetflixRouletteAPI
 $ pip install enum34
 ```
 
-You will also need to edit the config.cfg file with your bots credentials. The code should now compile and run :)
+* Use the `.py' and `.pyc' files from my [extended NetflixRouletteApi Python wrapper](https://github.com/alanwright/NetflixRoulettePython).
+* You will also need to edit the config.cfg file with your bots credentials. The code should now compile and run :smile:
 
-## How Does the Code Work or How Do I Create a Bot?
+```
+$ python NetflixBot.py
+```
 
-Check out my Reddit PRAW tutorial [here](http://www.wrightlyso.com/blog/reddit-api-subreddit) and my Reddit bot tutorial [here](http://www.wrightlyso.com/blog/netflixbot-tutorial).
 
 ##Additional Notes
 *Why is it US only? Reddit is an international community!*
@@ -114,5 +105,3 @@ Check out my Reddit PRAW tutorial [here](http://www.wrightlyso.com/blog/reddit-a
 Right now the NetflixRouletteAPI only supports the US, and since I use this API, I can currently only support US accuracy. There are updates in the works to support this so stay tuned! :)
 
 Alan Wright
-
-[WrightlySo](www.wrightlyso.com)
