@@ -91,7 +91,7 @@ $ pip install NetflixRouletteAPI
 $ pip install enum34
 ```
 
-* Use the `.py' and `.pyc' files from my [extended NetflixRouletteApi Python wrapper](https://github.com/alanwright/NetflixRoulettePython).
+* Use the `.py` and `.pyc` files from my [extended NetflixRouletteApi Python wrapper](https://github.com/alanwright/NetflixRoulettePython).
 * You will also need to edit the config.cfg file with your bots credentials. The code should now compile and run :smile:
 
 ```
