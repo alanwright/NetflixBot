@@ -1,6 +1,5 @@
 # NetflixBot
 # Created by: Alan Wright
-# wrightlyso.com
 # github.com/alanwright
 
 import praw
